@@ -30,7 +30,7 @@ public class YoutubeViewCollectorService {
     private String apiKey;
 
 //    @Scheduled(cron = "0 */5 * * * *")  // 5분마다
-    @Scheduled(cron = "*/10 * * * * *")  // 10초마다
+//    @Scheduled(cron = "*/10 * * * * *")  // 10초마다
     @Scheduled(cron = "0 */2 * * * * *")  // 2분마다
     public void collectViews() {
         String url = String.format("%s&id=%s&key=%s", baseUrl, videoIds, apiKey);
