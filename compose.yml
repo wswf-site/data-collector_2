@@ -1,6 +1,6 @@
 services:
   data-server:
-    image: ${ECR_REGISTRY_URL}:latest
+    image: ${GHCR_IMAGE_URL}:latest
     container_name: ${DATA_SERVER_CONTAINER_NAME}
     ports:
       - ${DATA_SERVER_PORT}
