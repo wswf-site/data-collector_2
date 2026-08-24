@@ -49,29 +49,29 @@ jobs:
       - name: GHCR에 Docker 이미지 Push하기
         run: docker push ghcr.io/wswf-site/data-collector:latest
 
-#      - name: .env 파일 생성
-#        run: |
-#          echo "${{ secrets.DOCKER_COMPOSE_ENV_VARS }}" > ./.env
-#
-#      - name: SCP로 Oracle에 Docker Compose 및 .env 파일 전송하기
-#        uses: appleboy/scp-action@v0.1.7
-#        with:
-#          host: ${{ secrets.ORACLE_HOST }}
-#          username: ${{ secrets.ORACLE_USERNAME }}
-#          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
-#          source: compose.yml,.env
-#          target: /home/ubuntu/data-collector/
-#
-#      - name: SSH로 EC2에 접속하여 Docker Compose 배포
-#        uses: appleboy/ssh-action@v1.0.3
-#        with:
-#          host: ${{ secrets.ORACLE_HOST }}
-#          username: ${{ secrets.ORACLE_USERNAME }}
-#          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
-#          script_stop: true
-#          script: |
-#            cd /home/ubuntu/data-collector/
-#            docker compose down || true
-#            docker compose pull
-#            docker compose up -d
-#            docker image prune -f
+      - name: .env 파일 생성
+        run: |
+          echo "${{ secrets.DOCKER_COMPOSE_ENV_VARS }}" > ./.env
+
+      - name: SCP로 Oracle에 Docker Compose 및 .env 파일 전송하기
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.ORACLE_HOST }}
+          username: ${{ secrets.ORACLE_USERNAME }}
+          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
+          source: compose.yml,.env
+          target: /home/ubuntu/data-collector/
+
+      - name: SSH로 EC2에 접속하여 Docker Compose 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.ORACLE_HOST }}
+          username: ${{ secrets.ORACLE_USERNAME }}
+          key: ${{ secrets.ORACLE_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            cd /home/ubuntu/data-collector/
+            docker compose down || true
+            docker compose pull
+            docker compose up -d
+            docker image prune -f
