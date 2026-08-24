@@ -30,7 +30,8 @@ public class YoutubeLikeCollectorService {
     private String baseUrl;
 
 //        @Scheduled(cron = "0 0,30 * * * *")  // 30분마다
-    @Scheduled(cron = "*/30 * * * * *")  // 30초마다
+//    @Scheduled(cron = "*/30 * * * * *")  // 30초마다
+    @Scheduled(cron = "0 */5 * * * * *")  // 5분마다
     public void collectLikes() {
         for (String videoId : VIDEO_ID_TO_TEAM.keySet()) {
             try {
